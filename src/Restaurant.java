@@ -101,7 +101,6 @@ public class Restaurant {
                                 System.out.println("");
                         }
                     } while (opciocarta != 0);
-
                     break;
                 case 2:
                     //Opció per mostrar la comanda
