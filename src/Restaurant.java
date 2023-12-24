@@ -5,7 +5,7 @@ public class Restaurant {
         Scanner input = new Scanner(System.in);
         int opcioprincipal = 0;
         int opciocarta = 0;
-
+        String[] comanda = new String[20];
         do {
 
             System.out.println("");
@@ -103,7 +103,69 @@ public class Restaurant {
                     } while (opciocarta != 0);
                     break;
                 case 2:
-                    //Opció per mostrar la comanda
+                    System.out.println("** Comanda **");
+                    for (String item : comanda) {
+                        System.out.println(item);
+                    }
+
+                    System.out.println("1. Afegir ítems a la comanda");
+                    System.out.println("2. Treure ítems de la comanda");
+                    System.out.println("0. Tornar al menú principal");
+                    System.out.print("Introdueix un nombre del 0 al 2 per seleccionar una opció: ");
+
+                    int opcionComanda = input.nextInt();
+
+                    switch (opcionComanda) {
+                        case 1:
+                            System.out.print("Introdueix l'ID de l'ítem que vols afegir (o 0 per sortir): ");
+                            int idAfegir = input.nextInt();
+                            while (idAfegir != 0) {
+                                if (idAfegir >= 1 && idAfegir <= 18) {
+                                    String nomItem = "";
+                                    switch (idAfegir) {
+                                        case 1: nomItem = "Amanida Cèsar"; break;
+                                        case 2: nomItem = "Amanida amb formatge de cabra"; break;
+                                        // ... (flaten + items)
+                                    }
+                                    comanda.add(nomItem);
+                                    System.out.println("Ítem afegit a la comanda.");
+                                } else {
+                                    System.out.println("ID no vàlida. Torna a intentar.");
+                                }
+                                System.out.print("Introdueix l'ID de l'ítem que vols afegir (o 0 per sortir): ");
+                                idAfegir = input.nextInt();
+                            }
+                            break;
+
+                        case 2:
+                            System.out.print("Introdueix l'ID de l'ítem que vols treure (o 0 per sortir): ");
+                            int idTreure = input.nextInt();
+                            while (idTreure != 0) {
+                                if (idTreure >= 1 && idTreure <= 18) {
+                                    String nomItem = "";
+                                    switch (idTreure) {
+                                        case 1: nomItem = "Amanida Cèsar"; break;
+                                        case 2: nomItem = "Amanida amb formatge de cabra"; break;
+                                        // ... (resto de los ítems)
+                                    }
+                                    comanda.remove(nomItem);
+                                    System.out.println("Ítem tret de la comanda.");
+                                } else {
+                                    System.out.println("ID no vàlida. Torna a intentar.");
+                                }
+                                System.out.print("Introdueix l'ID de l'ítem que vols treure (o 0 per sortir): ");
+                                idTreure = input.nextInt();
+                            }
+                            break;
+
+                        case 0:
+                            // Tornar al menú principal
+                            break;
+
+                        default:
+                            System.out.println("Opció no vàlida.");
+                            break;
+                    }
                     break;
                 case 3:
                     //Opció per imprimir la factura
