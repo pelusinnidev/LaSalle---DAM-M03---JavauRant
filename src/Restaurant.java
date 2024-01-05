@@ -7,7 +7,28 @@ import java.util.ArrayList;
             int opcioprincipal;
             int opciocarta;
             int opcioComanda;
-            ArrayList<Integer> comanda = new ArrayList<>(); // Use an ArrayList for dynamic item management
+            double IVA = 0.21;
+            ArrayList<Integer> comanda = new ArrayList<>();
+            String[][] productes = {
+                    {"Amanida Cèsar", "10"},
+                    {"Amanida amb formatge de cabra", "12"},
+                    {"Amanida verda", "8"},
+                    {"Macarrons a la bolonyesa", "14"},
+                    {"Pasta fresca", "12"},
+                    {"Spaghetti amb formatge", "12"},
+                    {"Llibrets amb formatge", "14"},
+                    {"Entrecot 400g", "20"},
+                    {"Costelles de xai", "22"},
+                    {"Durada a la planxa", "16"},
+                    {"Rap", "23"},
+                    {"Llenguado", "30"},
+                    {"Vi blanc", "8"},
+                    {"Vi negre", "8"},
+                    {"Sangria", "8"},
+                    {"Aigua", "1"},
+                    {"Refresc", "2.5"},
+                    {"Café", "4"}
+            };
 
             do {
                 System.out.println("\n** Menú **");
@@ -135,7 +156,7 @@ import java.util.ArrayList;
                                     }
                                     break;
                                 case 0:
-                                    // Return to the main menu
+                                    // L'usuari vol tornar al menú principal
                                     break;
                                 default:
                                     System.out.println("Opció no vàlida.");
@@ -144,9 +165,23 @@ import java.util.ArrayList;
                         break;
 
                     case 3:
-                        // Option for printing the bill
+                        double totalSinIVA = 0;
                         System.out.println("Imprimint factura...");
-                        // Implement bill printing logic here.
+                        System.out.println("Items comandats:");
+                        for (int id : comanda) {
+                            // Asegurarse de que el ID está en el rango de productos disponibles
+                            if (id > 0 && id <= productes.length) {
+                                String nombre = productes[id - 1][0];
+                                double precio = Double.parseDouble(productes[id - 1][1]);
+                                System.out.println(nombre + ": " + precio + " euros");
+                                totalSinIVA += precio;
+                            } else {
+                                System.out.println("ID de producto no válido: " + id);
+                            }
+                        }
+                        double totalConIVA = totalSinIVA * (1 + IVA);
+                        System.out.println("Total sin IVA: " + totalSinIVA + " euros");
+                        System.out.println("Total con IVA (" + (IVA * 100) + "%): " + totalConIVA + " euros");
                         break;
 
                     case 4:
