@@ -169,7 +169,6 @@ import java.util.ArrayList;
                         System.out.println("Imprimint factura...");
                         System.out.println("Items comandats:");
                         for (int id : comanda) {
-                            // Asegurarse de que el ID está en el rango de productos disponibles
                             if (id > 0 && id <= productes.length) {
                                 String nombre = productes[id - 1][0];
                                 double precio = Double.parseDouble(productes[id - 1][1]);
