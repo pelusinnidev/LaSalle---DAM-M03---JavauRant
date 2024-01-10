@@ -4,9 +4,10 @@ import java.util.ArrayList;
     public class Restaurant {
         public static void main(String[] args) {
             Scanner input = new Scanner(System.in);
-            int opcioprincipal;
-            int opciocarta;
-            int opcioComanda;
+            int opcioprincipal = 0;
+            int opciocarta = 0;
+            int opcioComanda = 0;
+            boolean sortir = false;
             double IVA = 0.21;
             ArrayList<Integer> comanda = new ArrayList<>();
             String[][] productes = {
@@ -31,11 +32,13 @@ import java.util.ArrayList;
             };
 
             do {
-                System.out.println("\n** Menú **");
+                System.out.println("");
+                System.out.println("** Menú **");
                 System.out.println("1. Veure menú");
                 System.out.println("2. Realitzar comanda");
                 System.out.println("3. Imprimir factura");
                 System.out.println("4. Sortir");
+                System.out.println("");
                 System.out.print("Introdueix un nombre del 1 al 4 per seleccionar una opció de les disponibles: ");
 
                 opcioprincipal = input.nextInt();
@@ -123,18 +126,21 @@ import java.util.ArrayList;
                         break;
 
                     case 2:
-                        System.out.println("** Comanda **");
-                        if (comanda.isEmpty()) {
-                            System.out.println("La comanda està buida.");
-                        } else {
-                            System.out.println(comanda.toString());
-                        }
-
                         do {
+                            System.out.println("");
+                            System.out.println("** Comanda **");
+                            if (comanda.isEmpty()) {
+                                System.out.println("La comanda està buida.");
+                            } else {
+                                System.out.println(comanda.toString());
+                            }
+
+                            System.out.println("");
                             System.out.println("1. Afegir objectes");
                             System.out.println("2. Treure objectes");
                             System.out.println("0. Tornar");
                             System.out.print("Selecciona una opció: ");
+                            System.out.println("");
 
                             opcioComanda = input.nextInt();
 
@@ -166,7 +172,9 @@ import java.util.ArrayList;
 
                     case 3:
                         double totalSinIVA = 0;
+                        System.out.println("");
                         System.out.println("Imprimint factura...");
+                        System.out.println("");
                         System.out.println("Items comandats:");
                         for (int id : comanda) {
                             if (id > 0 && id <= productes.length) {
@@ -179,12 +187,21 @@ import java.util.ArrayList;
                             }
                         }
                         double totalConIVA = totalSinIVA * (1 + IVA);
+                        System.out.println("");
                         System.out.println("Total sin IVA: " + totalSinIVA + " euros");
                         System.out.println("Total con IVA (" + (IVA * 100) + "%): " + totalConIVA + " euros");
-                        break;
+                        System.out.println("");
+                        System.out.print("Desitja realitzar una altre comanda? (True (Si) o False (No)):");
+                        sortir = input.nextBoolean();
+                        if (sortir) {
+                            break;
+                        } else {
+                            opcioprincipal = 4;
+                        }
 
                     case 4:
                         // Exit the program
+                        System.out.println("");
                         System.out.println("Adeu! Fins aviat!");
                         break;
 
