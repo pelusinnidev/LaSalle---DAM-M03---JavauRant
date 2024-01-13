@@ -1,18 +1,18 @@
 import java.util.Scanner;
-import java.util.ArrayList;
 
 public class Restaurant {
     public static void main(String[] args) {
 
-        //Inicialitzem el Scanner
+        // Inicialitzem el Scanner
         Scanner input = new Scanner(System.in);
 
         // Inicialitzem les variables
-        int opcioprincipal;
-        int opciocarta;
-        int opcioComanda;
-        boolean sortir;
-        boolean isComandaEmpty = true;
+        int opcioprincipal = 0;
+        int opciocarta = 0;
+        int opcioComanda = 0;
+        boolean sortir = true;
+        boolean isComandaBuida = true;
+        double totalSinIVA = 0;
         double IVA = 0.21;
 
         // Fem l'array per a la comanda
@@ -68,7 +68,7 @@ public class Restaurant {
         // Definim els colors que volem fer servir
         final String RED_ON_YELLOW = RED + BG_YELLOW;
 
-        //Fem el String amb els Productes i els seus Preus
+        // Fem el String amb els Productes i els seus Preus
         String[][] productes = {
                 { "Amanida Cèsar", "10"},
                 {"Amanida amb formatge de cabra", "12"},
@@ -91,6 +91,7 @@ public class Restaurant {
         };
 
         do {
+            // Posem les opcions del menú principal
             System.out.println("");
             System.out.println("** Menú **");
             System.out.println(BLUE + "1. Veure menú" + RESET);
@@ -103,8 +104,9 @@ public class Restaurant {
             opcioprincipal = input.nextInt();
 
             switch (opcioprincipal) {
+                // Case 1: Veure Menú
                 case 1:
-                    //Opció per mostrar el menú
+                    // Opció per mostrar la carta de productes del restaurant
                     System.out.println("");
                     System.out.println("** Menú **");
                     System.out.println(GREEN + "** 1. Amanides **" + RESET);
@@ -119,6 +121,8 @@ public class Restaurant {
                     do {
                         opciocarta = input.nextInt();
                         switch (opciocarta) {
+
+                            // Mostrem l'apartat de les Amanides
                             case 1:
                                 System.out.println("");
                                 System.out.println(GREEN + "** Amanides **" + RESET);
@@ -128,6 +132,8 @@ public class Restaurant {
                                 System.out.println("");
                                 System.out.print("Recorda: Posa un 0 per tornar al menu principal: ");
                                 break;
+
+                            // Mostrem l'apartat de les Pastes
                             case 2:
                                 System.out.println("");
                                 System.out.println(YELLOW + "** Pastes **" + RESET);
@@ -137,6 +143,8 @@ public class Restaurant {
                                 System.out.println("");
                                 System.out.print("Recorda: Posa un 0 per tornar al menu principal: ");
                                 break;
+
+                            // Mostrem l'apartat de les Carns
                             case 3:
                                 System.out.println("");
                                 System.out.println(RED + "** Carns **" + RESET);
@@ -146,6 +154,8 @@ public class Restaurant {
                                 System.out.println("");
                                 System.out.print("Recorda: Posa un 0 per tornar al menu principal: ");
                                 break;
+
+                            // Mostrem l'apartat dels Peixos
                             case 4:
                                 System.out.println("");
                                 System.out.println(BLUE + "** Peixos **" + RESET);
@@ -155,6 +165,8 @@ public class Restaurant {
                                 System.out.println("");
                                 System.out.print("Recorda: Posa un 0 per tornar al menu principal: ");
                                 break;
+
+                            // Mostrem la llista de Begudes Alcoholiques
                             case 5:
                                 System.out.println("");
                                 System.out.println(PURPLE + "** Begudes Alcoholiques **" + RESET);
@@ -164,6 +176,8 @@ public class Restaurant {
                                 System.out.println("");
                                 System.out.print("Recorda: Posa un 0 per tornar al menu principal: ");
                                 break;
+
+                            // Mostrem la llista de Begudes NO Alcoholiques
                             case 6:
                                 System.out.println("");
                                 System.out.println(WHITE + "** Begudes no Alcoholiques **" + RESET);
@@ -173,28 +187,33 @@ public class Restaurant {
                                 System.out.println("");
                                 System.out.print("Recorda: Posa un 0 per tornar al menu principal: ");
                                 break;
+
+                            // Opció per tornar al menú principal
                             case 0:
-                                // L'usuari vol tornar al menú principal
+                                // L'usuari vol tornar al menú principal (no posem codi i deixem només un break perquè surti)
                                 break;
+
+                            // Si no posa cap opció vàlida...
                             default:
-                                // Opció no vàlida
                                 System.out.println("Opció no vàlida.");
                                 System.out.println("");
                         }
                     } while (opciocarta != 0);
                     break;
 
+                // Case 2: Realitzar Comanda
                 case 2:
                     do {
                         System.out.println("");
                         System.out.println("** Comanda **");
-                        for (int item : comanda) {
+                        for (int item : comanda) { //Per a cada element a comanda, assigna l'element a item i executa el cos del bucle
                             if (item != 0) {
-                                isComandaEmpty = false;
+                                isComandaBuida = false;
                                 break;
                             }
                         }
-                        if (isComandaEmpty) {
+                        // En cas de que la camnda esta buida o tota plena de 0's...
+                        if (isComandaBuida) {
                             System.out.println("La comanda esta buida...");
                         } else {
                             // Imprimim els items que estan a la comanda (no son un 0)
@@ -205,6 +224,8 @@ public class Restaurant {
                             }
                             System.out.println("");
                         }
+
+                        // Opcions del Case 2
                         System.out.println("");
                         System.out.println(BLUE + "1. Afegir objectes");
                         System.out.println(ORANGE + "2. Treure objectes");
@@ -215,39 +236,50 @@ public class Restaurant {
                         opcioComanda = input.nextInt();
 
                         switch (opcioComanda) {
+
+                            //  L'Usuari vol afegir un objecte
                             case 1:
-                                // Codi per afegir un item al Array
+                                // Codi per afegir un item a l'Array
                                 System.out.print("Introdueix l'ID de l'objecte a afegir: ");
                                 int itemAfegir = input.nextInt();
 
+                                // Busquem el primer 0 (espai buit) disponible i el cambiem pel número que diu l'Usuari
                                 boolean afegit = false;
                                 for (int i = 0; i < comanda.length; i++) {
-                                    if (comanda[i] == 0) { // Buscar el primer lloc lliure
+                                    if (comanda[i] == 0) {
                                         comanda[i] = itemAfegir;
                                         afegit = true;
                                         System.out.println("Objecte amb ID " + itemAfegir + " afegit a la comanda.");
                                         break;
                                     }
                                 }
+
+                                // Si no hi ha lloc (no hi han 0's) i el boolean és fals...
                                 if (!afegit) {
                                     System.out.println("Comanda plena. No es pot afegir més items.");
                                 }
                                 break;
 
+                            // L'Usuari vol treure un objecte de l'Array
                             case 2:
-                                // Code to remove an item from the array
+
+                                // Per saber quin objecte vol treure el usuari...
                                 System.out.println("Introdueix l'ID de l'objecte a treure: ");
                                 int itemTreure = input.nextInt();
 
                                 boolean trobat = false;
+
+                                // Fem un cambiazo i un cop trobem l'objecte de l'Array que és igual al número que ha posat l'Usuari el cambien per un 0 (lloc buit per si vol afegir alguna cosa o no)
                                 for (int i = 0; i < comanda.length; i++) {
                                     if (comanda[i] == itemTreure) {
-                                        comanda[i] = 0; // Treure un element tornant a posar un 0 (valor nul)
+                                        comanda[i] = 0;
                                         trobat = true;
                                         System.out.println("Objecte amb ID " + itemTreure + " tret de la comanda.");
                                         break;
                                     }
                                 }
+
+                                // Si no hi ha el número que diu l'usuari...
                                 if (!trobat) {
                                     System.out.println("L'objecte amb ID " + itemTreure + " no es troba a la comanda.");
                                 }
@@ -257,32 +289,41 @@ public class Restaurant {
                                 // L'usuari vol tornar al menú principal
                                 break;
 
+                            // Si no posa cap opció vàlida...
                             default:
-                                System.out.println(RED +"Opció no vàlida.");
+                                System.out.println(RED + "Opció no vàlida.");
                         }
                     } while (opcioComanda != 0);
                     break;
 
                 case 3:
-                    double totalSinIVA = 0;
+
+                    // Imprimim línies en blanc i un missatge que indica que s'està imprimint la factura.
                     System.out.println("");
                     System.out.println("Imprimint factura...");
                     System.out.println("");
                     System.out.println("Items comandats:");
+
+                    // Comencem un bucle for-each per recórrer tots els elements de la matriu 'comanda'.
                     for (int id : comanda) {
                         if (id > 0 && id <= productes.length) {
+                            // Obtenim el nom i el preu del producte utilitzant l'identificador 'id', ajustant l'índex perquè comenci des de 0.
                             String nombre = productes[id - 1][0];
-                            double precio = Double.parseDouble(productes[id - 1][1]);
+                            double precio = Double.parseDouble(productes[id - 1][1]); // Convertim el preu de String a double amb "Double.parseDouble" (Double.parseDouble és una funció de la classe Double en Java).
                             System.out.println(nombre + ": " + precio + " euros");
                             totalSinIVA += precio;
                         }
                     }
+
+                    // Imprimim el que haurà de pagar l'Usuari
                     double totalConIVA = totalSinIVA * (1 + IVA);
                     System.out.println("");
                     System.out.println(GREEN + "Total sin IVA: " + totalSinIVA + " euros");
                     System.out.println(RED +"Total con IVA (" + (IVA * 100) + "%): " + totalConIVA + " euros");
                     System.out.println("");
                     System.out.print(BLUE + "Desitja realitzar una altre comanda? (True (Si) o False (No)):");
+
+                    // Si l'Usuari vol realitzar una altre comanda retorna al menu principal, sinó acaba el programa anant al case 4 (Sortir)
                     sortir = input.nextBoolean();
                     if (sortir) {
                         break;
@@ -291,17 +332,18 @@ public class Restaurant {
                     }
 
                 case 4:
-                    // Exit the program
+                    // Sortir del Programa
                     System.out.println("");
                     System.out.println("Adeu! Fins aviat!");
                     break;
 
                 default:
-                    // Invalid option
+                    // Si no posa cap opció vàlida...
                     System.out.println(RED + "Opció no vàlida.");
             }
         } while (opcioprincipal != 4);
 
-        input.close(); // Always close your resources!
+        // Tanquem l'esbirro (Scanner) per reduïr els recursos
+        input.close();
     }
 }
