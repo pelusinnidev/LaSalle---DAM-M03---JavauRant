@@ -1,6 +1,6 @@
 import java.util.Scanner;
-public class Restaurant {
-    public static void main(String[] args) {
+public class M03-UF1-PR01-JoveRoger-HernandezPol {
+    public static void main (String[] args) {
 
         // Inicialitzem el Scanner
         Scanner input = new Scanner(System.in);
