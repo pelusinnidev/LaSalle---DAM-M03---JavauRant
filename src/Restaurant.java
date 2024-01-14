@@ -1,6 +1,5 @@
 import java.util.Scanner;
-
-public class Main {
+public class Restaurant {
     public static void main(String[] args) {
 
         // Inicialitzem el Scanner
@@ -244,7 +243,6 @@ public class Main {
                         System.out.println(ORANGE + "2. Treure objectes");
                         System.out.println(GREEN + "0. Tornar");
                         System.out.print(RED + "Selecciona una opció: ");
-                        System.out.println("");
 
                         opcioComanda = input.nextInt();
 
@@ -253,6 +251,7 @@ public class Main {
                             //  L'Usuari vol afegir un objecte
                             case 1:
                                 // Codi per afegir un item a l'Array
+                                System.out.println("");
                                 System.out.print("Introdueix l'ID de l'objecte a afegir: ");
                                 int itemAfegir = input.nextInt();
 
@@ -334,7 +333,7 @@ public class Main {
                     System.out.println(GREEN + "Total sin IVA: " + totalSinIVA + PREU +" euros");
                     System.out.println(RED +"Total con IVA (" + (IVA * 100) + "%): " + totalConIVA + PREU +" euros");
                     System.out.println("");
-                    System.out.print(BLUE + "Desitja realitzar una altre comanda? (" + SI_NO + "True" + BLUE + "(Si) o" + SI_NO +"False" + BLUE + "(No)):");
+                    System.out.print(BLUE + "Desitja realitzar una altre comanda? (" + SI_NO + "True" + BLUE + "(Si) o" + SI_NO +" False" + BLUE + "(No)):");
 
                     // Si l'Usuari vol realitzar una altre comanda retorna al menu principal, sinó acaba el programa anant al case 4 (Sortir)
                     sortir = input.nextBoolean();
