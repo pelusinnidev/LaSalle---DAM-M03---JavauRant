@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Restaurant {
+public class Main {
     public static void main(String[] args) {
 
         // Inicialitzem el Scanner
@@ -28,6 +28,7 @@ public class Restaurant {
         final String CYAN = "\033[36m";
         final String WHITE = "\033[37m";
         final String ORANGE = "\033[91m";
+        final String WEAKGREEN = "\u001B[92m";
 
         // Colors Brillants
         final String BRIGHT_BLACK = "\033[90m";
@@ -38,6 +39,11 @@ public class Restaurant {
         final String BRIGHT_PURPLE = "\033[95m";
         final String BRIGHT_CYAN = "\033[96m";
         final String BRIGHT_WHITE = "\033[97m";
+        final String BRIGHT_WEAKGREEN = "\u001B[92;1m";
+        final String SHINY_BLACK = "\u001B[30;1m";
+        final String SHINY_WHITE = "\u001B[97;1m";
+        final String SHINY_TEXT = "\033[1m";
+
 
         // Colors per el fons
         final String BG_BLACK = "\033[40m";
@@ -65,35 +71,42 @@ public class Restaurant {
         final String UNDERLINE = "\033[4m";
         final String REVERSED = "\033[7m";
 
-        // Definim els colors que volem fer servir
+        // Definim els colors que volem fer servir com a variables
         final String RED_ON_YELLOW = RED + BG_YELLOW;
+        final String MENU = UNDERLINE + BRIGHT_WHITE + UNDERLINE;
+        final String TITULS = UNDERLINE;
+        final String PREU= WEAKGREEN + BRIGHT_WEAKGREEN;
+        final String ID= SHINY_BLACK;
+        final String ID_NUMERO= SHINY_WHITE;
+        final String SI_NO = SHINY_WHITE;
+        final String ADEU = BG_BRIGHT_WHITE + SHINY_TEXT + SHINY_BLACK;
 
         // Fem el String amb els Productes i els seus Preus
         String[][] productes = {
-                { "Amanida Cèsar", "10"},
-                {"Amanida amb formatge de cabra", "12"},
-                {"Amanida verda", "8"},
-                {"Macarrons a la bolonyesa", "14"},
-                {"Pasta fresca", "12"},
-                {"Spaghetti amb formatge", "12"},
-                {"Llibrets amb formatge", "14"},
-                {"Entrecot 400g", "20"},
-                {"Costelles de xai", "22"},
-                {"Durada a la planxa", "16"},
-                {"Rap", "23"},
-                {"Llenguado", "30"},
-                {"Vi blanc", "8"},
-                {"Vi negre", "8"},
-                {"Sangria", "8"},
-                {"Aigua", "1"},
-                {"Refresc", "2.5"},
-                {"Café", "4"}
+                {GREEN + "Amanida Cèsar", "10"},
+                {GREEN + "Amanida amb formatge de cabra", "12"},
+                {GREEN + "Amanida verda", "8"},
+                {YELLOW + "Macarrons a la bolonyesa", "14"},
+                {YELLOW + "Pasta fresca", "12"},
+                {YELLOW + "Spaghetti amb formatge", "12"},
+                {RED + "Llibrets amb formatge", "14"},
+                {RED + "Entrecot 400g", "20"},
+                {RED + "Costelles de xai", "22"},
+                {BLUE + "Durada a la planxa", "16"},
+                {BLUE + "Rap", "23"},
+                {BLUE + "Llenguado", "30"},
+                {PURPLE + "Vi blanc", "8"},
+                {PURPLE + "Vi negre", "8"},
+                {PURPLE + "Sangria", "8"},
+                {BLACK + "Aigua", "1"},
+                {BLACK + "Refresc", "2.5"},
+                {BLACK + "Café", "4"}
         };
 
         do {
             // Posem les opcions del menú principal
             System.out.println("");
-            System.out.println("** Menú **");
+            System.out.println(MENU + "** Menú **" + RESET);
             System.out.println(BLUE + "1. Veure menú" + RESET);
             System.out.println(ORANGE + "2. Realitzar comanda" + RESET);
             System.out.println(GREEN + "3. Imprimir factura" + RESET);
@@ -108,7 +121,7 @@ public class Restaurant {
                 case 1:
                     // Opció per mostrar la carta de productes del restaurant
                     System.out.println("");
-                    System.out.println("** Menú **");
+                    System.out.println(MENU + "** Menú **" + RESET);
                     System.out.println(GREEN + "** 1. Amanides **" + RESET);
                     System.out.println(YELLOW + "** 2. Pastes **" + RESET);
                     System.out.println(RED + "** 3. Carns **" + RESET);
@@ -125,10 +138,10 @@ public class Restaurant {
                             // Mostrem l'apartat de les Amanides
                             case 1:
                                 System.out.println("");
-                                System.out.println(GREEN + "** Amanides **" + RESET);
-                                System.out.println("** " + RED + "ID(1)" + GREEN + ": Amanida Cèsar" + BLUE + " (10 euros)" + RESET + " **");
-                                System.out.println("** " + RED + "ID(2)" + GREEN + ": Amanida amb formatge de cabra" + BLUE + " (12 euros)" + RESET + " **");
-                                System.out.println("** " + RED + "ID(3)" + GREEN + ": Amanida verda " + GREEN + "(SENSE GLUCOSA)" + BLUE + " (8 Euros)" + RESET + " **");
+                                System.out.println(TITULS + GREEN + "** Amanides **" + RESET);
+                                System.out.println("** " + ID + "ID" + ID_NUMERO + "(1)" + GREEN + ": Amanida Cèsar" + PREU + " (10 euros)" + RESET + " **");
+                                System.out.println("** " + ID + "ID" + ID_NUMERO + "(2)" + GREEN + ": Amanida amb formatge de cabra" + PREU + " (12 euros)" + RESET + " **");
+                                System.out.println("** " + ID + "ID" + ID_NUMERO + "(3)" + GREEN + ": Amanida verda " + GREEN + "(SENSE GLUCOSA)" + PREU + " (8 Euros)" + RESET + " **");
                                 System.out.println("");
                                 System.out.print("Recorda: Posa un 0 per tornar al menu principal: ");
                                 break;
@@ -136,10 +149,10 @@ public class Restaurant {
                             // Mostrem l'apartat de les Pastes
                             case 2:
                                 System.out.println("");
-                                System.out.println(YELLOW + "** Pastes **" + RESET);
-                                System.out.println("** " + RED + "ID(4)" + YELLOW + ": Macarrons a la bolonyesa" + BLUE + " (14 euros)" + RESET + " **");
-                                System.out.println("** " + RED + "ID(5)" + YELLOW + ": Pasta fresca" + BLUE + " (12 euros)" + RESET + " **");
-                                System.out.println("** " + RED + "ID(6)" + YELLOW + ": Spaghetti amb formatge" + BLUE + " (12 euros)" + RESET + " **");
+                                System.out.println(TITULS + YELLOW + "** Pastes **" + RESET);
+                                System.out.println("** " + ID + "ID" + ID_NUMERO + "(4)" + YELLOW + ": Macarrons a la bolonyesa" + PREU + " (14 euros)" + RESET + " **");
+                                System.out.println("** " + ID + "ID" + ID_NUMERO + "(5)" + YELLOW + ": Pasta fresca" + PREU + " (12 euros)" + RESET + " **");
+                                System.out.println("** " + ID + "ID" + ID_NUMERO + "(6)" + YELLOW + ": Spaghetti amb formatge" + PREU + " (12 euros)" + RESET + " **");
                                 System.out.println("");
                                 System.out.print("Recorda: Posa un 0 per tornar al menu principal: ");
                                 break;
@@ -147,10 +160,10 @@ public class Restaurant {
                             // Mostrem l'apartat de les Carns
                             case 3:
                                 System.out.println("");
-                                System.out.println(RED + "** Carns **" + RESET);
-                                System.out.println("** " + RED + "ID(7)" + RED + ": Llibrets amb formatge" + BLUE + " (14 euros)" + RESET + " **");
-                                System.out.println("** " + RED + "ID(8)" + RED + ": Entrecot 400g" + BLUE + " (20 euros)" + RESET + " **");
-                                System.out.println("** " + RED + "ID(9)" + RED + ": Costelles de xai" + BLUE + " (22 euros)" + RESET + " **");
+                                System.out.println(TITULS + RED + "** Carns **" + RESET);
+                                System.out.println("** " + ID + "ID" + ID_NUMERO + "(7)" + RED + ": Llibrets amb formatge" + PREU + " (14 euros)" + RESET + " **");
+                                System.out.println("** " + ID + "ID" + ID_NUMERO + "(8)" + RED + ": Entrecot 400g" + PREU + " (20 euros)" + RESET + " **");
+                                System.out.println("** " + ID + "ID" + ID_NUMERO + "(9)" + RED + ": Costelles de xai" + PREU + " (22 euros)" + RESET + " **");
                                 System.out.println("");
                                 System.out.print("Recorda: Posa un 0 per tornar al menu principal: ");
                                 break;
@@ -158,10 +171,10 @@ public class Restaurant {
                             // Mostrem l'apartat dels Peixos
                             case 4:
                                 System.out.println("");
-                                System.out.println(BLUE + "** Peixos **" + RESET);
-                                System.out.println("** " + RED + "ID(10)" + BLUE + ": Durada a la planxa" + BLUE + " (16 euros)" + RESET + " **");
-                                System.out.println("** " + RED + "ID(11)" + BLUE + ": Rap" + BLUE + " (23 euros)" + RESET + " **");
-                                System.out.println("** " + RED + "ID(12)" + BLUE + ": Llenguado" + BLUE + " (30 euros)" + RESET + " **");
+                                System.out.println(TITULS + BLUE + "** Peixos **" + RESET);
+                                System.out.println("** " + ID + "ID" + ID_NUMERO + "(10)" + BLUE + ": Durada a la planxa" + PREU + " (16 euros)" + RESET + " **");
+                                System.out.println("** " + ID + "ID" + ID_NUMERO + "(11)" + BLUE + ": Rap" + PREU + " (23 euros)" + RESET + " **");
+                                System.out.println("** " + ID + "ID" + ID_NUMERO + "(12)" + BLUE + ": Llenguado" + PREU + " (30 euros)" + RESET + " **");
                                 System.out.println("");
                                 System.out.print("Recorda: Posa un 0 per tornar al menu principal: ");
                                 break;
@@ -169,10 +182,10 @@ public class Restaurant {
                             // Mostrem la llista de Begudes Alcoholiques
                             case 5:
                                 System.out.println("");
-                                System.out.println(PURPLE + "** Begudes Alcoholiques **" + RESET);
-                                System.out.println("** " + RED + "ID(13)" + PURPLE + ": Vi blanc" + BLUE + " (8 euros)" + RESET + " **");
-                                System.out.println("** " + RED + "ID(14)" + PURPLE + ": Vi negre" + BLUE + " (8 euros)" + RESET + " **");
-                                System.out.println("** " + RED + "ID(15)" + PURPLE + ": Sangria" + BLUE + " (8 euros)" + RESET + " **");
+                                System.out.println(TITULS + PURPLE + "** Begudes Alcoholiques **" + RESET);
+                                System.out.println("** " + ID + "ID" + ID_NUMERO + "(13)" + PURPLE + ": Vi blanc" + PREU + " (8 euros)" + RESET + " **");
+                                System.out.println("** " + ID + "ID" + ID_NUMERO + "(14)" + PURPLE + ": Vi negre" + PREU + " (8 euros)" + RESET + " **");
+                                System.out.println("** " + ID + "ID" + ID_NUMERO + "(15)" + PURPLE + ": Sangria" + PREU + " (8 euros)" + RESET + " **");
                                 System.out.println("");
                                 System.out.print("Recorda: Posa un 0 per tornar al menu principal: ");
                                 break;
@@ -180,10 +193,10 @@ public class Restaurant {
                             // Mostrem la llista de Begudes NO Alcoholiques
                             case 6:
                                 System.out.println("");
-                                System.out.println(WHITE + "** Begudes no Alcoholiques **" + RESET);
-                                System.out.println("** " + RED + "ID(16)" + CYAN + ": Aigua" + BLUE + " (1 euro)" + RESET + " **");
-                                System.out.println("** " + RED + "ID(17)" + ORANGE + ": Refresc" + BLUE + " (2,5 euros)" + RESET + " **");
-                                System.out.println("** " + RED + "ID(18)" + BLACK + ": Café" + BLUE + " (4 euros)" + RESET + " **");
+                                System.out.println(TITULS + WHITE + "** Begudes no Alcoholiques **" + RESET);
+                                System.out.println("** " + ID + "ID" + ID_NUMERO + "(16)" + CYAN + ": Aigua" + PREU + " (1 euro)" + RESET + " **");
+                                System.out.println("** " + ID + "ID" + ID_NUMERO + "(17)" + ORANGE + ": Refresc" + PREU + " (2,5 euros)" + RESET + " **");
+                                System.out.println("** " + ID + "ID" + ID_NUMERO + "(18)" + BLACK + ": Café" + PREU + " (4 euros)" + RESET + " **");
                                 System.out.println("");
                                 System.out.print("Recorda: Posa un 0 per tornar al menu principal: ");
                                 break;
@@ -310,7 +323,7 @@ public class Restaurant {
                             // Obtenim el nom i el preu del producte utilitzant l'identificador 'id', ajustant l'índex perquè comenci des de 0.
                             String nombre = productes[id - 1][0];
                             double precio = Double.parseDouble(productes[id - 1][1]); // Convertim el preu de String a double amb "Double.parseDouble" (Double.parseDouble és una funció de la classe Double en Java).
-                            System.out.println(nombre + ": " + precio + " euros");
+                            System.out.println(nombre + ": " + precio + PREU +" euros");
                             totalSinIVA += precio;
                         }
                     }
@@ -318,10 +331,10 @@ public class Restaurant {
                     // Imprimim el que haurà de pagar l'Usuari
                     double totalConIVA = totalSinIVA * (1 + IVA);
                     System.out.println("");
-                    System.out.println(GREEN + "Total sin IVA: " + totalSinIVA + " euros");
-                    System.out.println(RED +"Total con IVA (" + (IVA * 100) + "%): " + totalConIVA + " euros");
+                    System.out.println(GREEN + "Total sin IVA: " + totalSinIVA + PREU +" euros");
+                    System.out.println(RED +"Total con IVA (" + (IVA * 100) + "%): " + totalConIVA + PREU +" euros");
                     System.out.println("");
-                    System.out.print(BLUE + "Desitja realitzar una altre comanda? (True (Si) o False (No)):");
+                    System.out.print(BLUE + "Desitja realitzar una altre comanda? (" + SI_NO + "True" + BLUE + "(Si) o" + SI_NO +"False" + BLUE + "(No)):");
 
                     // Si l'Usuari vol realitzar una altre comanda retorna al menu principal, sinó acaba el programa anant al case 4 (Sortir)
                     sortir = input.nextBoolean();
@@ -334,7 +347,7 @@ public class Restaurant {
                 case 4:
                     // Sortir del Programa
                     System.out.println("");
-                    System.out.println("Adeu! Fins aviat!");
+                    System.out.println(ADEU + "Adeu! Fins aviat!");
                     break;
 
                 default:
